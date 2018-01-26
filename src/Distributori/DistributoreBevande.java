@@ -10,8 +10,8 @@ public class DistributoreBevande extends Distributore {
     private int quantitàCaffé;
     private HashMap<String,Prodotto> bevande = new HashMap<>();
 
-    public DistributoreBevande(int[] numMonete) {
-        super(numMonete);
+    public DistributoreBevande(double monete) {
+        super(monete);
         this.quantitàCaffé = 500;
     }
 
@@ -31,13 +31,18 @@ public class DistributoreBevande extends Distributore {
     @Override
     public boolean acquistaProdotto(String key, int[] monete) {
         Prodotto b = bevande.get(key);
-        if(super.monetePrezzo(monete,b) && super.moneteMonete(monete) && abbastanzaCaffé(key)) {
+        if(super.monetePrezzo(monete,b) && abbastanzaCaffé(key)) {
             this.quantitàCaffé -= ((Bevande)bevande.get(key)).getCafféNecessario();
             for (int i=0; i<monete.length; i++) {
-                this.numMonete[i] += monete[i];
+                monete[i] += monete[i];
             }
             return true;
         }
         return false;
+    }
+
+    @Override
+    public void ricaricaProdotto() {
+        this.quantitàCaffé = 500;
     }
 }

@@ -10,8 +10,8 @@ public class DistributoreSnack extends Distributore {
     private HashMap<String,Prodotto> snacks = new HashMap<>();
     private HashMap<String,Integer> cassetti = new HashMap<>();
 
-    public DistributoreSnack(int[] numMonete) {
-        super(numMonete);
+    public DistributoreSnack(double monete) {
+        super(monete);
     }
 
     public void aggiungiProdotto(Prodotto prodotto) {
@@ -27,14 +27,20 @@ public class DistributoreSnack extends Distributore {
     @Override
     public boolean acquistaProdotto(String key, int[] monete) {
         Prodotto p = snacks.get(key);
-        if(super.monetePrezzo(monete,p) && super.moneteMonete(monete)) {
+        if(super.monetePrezzo(monete,p)) {
             cassetti.put(key, cassetti.get(key)-1);
             for (int i=0; i<monete.length; i++) {
-                this.numMonete[i] += monete[i];
+                super.monete += monete[i];
             }
             return true;
         }
         return false;
     }
 
+    @Override
+    public void ricaricaProdotto() {
+        for(String k :cassetti.keySet()) {
+            cassetti.put(k, 20);
+        }
+    }
 }

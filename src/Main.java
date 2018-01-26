@@ -6,9 +6,9 @@ import Prodotti.Snack;
 public class Main {
 
     public static void main(String[] args) {
-        int[] numMonetePieno = {10,10,10,10};
-        DistributoreSnack dsnack = new DistributoreSnack(numMonetePieno);
-        DistributoreBevande dbev = new DistributoreBevande(numMonetePieno);
+
+        DistributoreSnack dsnack = new DistributoreSnack(10.0);
+        DistributoreBevande dbev = new DistributoreBevande(10.0);
 
         Snack p1 = new Snack("PATA1","rustica san carlo",0.4);
         Bevande b1 = new Bevande("LON",20, "caffe lungo",0.45);
